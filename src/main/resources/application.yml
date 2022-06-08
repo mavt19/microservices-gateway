@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: microservices-gateway
+          
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+        
+    gateway:
+      routes:
+      - id: microservices-users
+        uri: lb://microservices-users
+        predicates:
+        - Path=/api/v1/**  
+        filters:
+        - StripPrefix=2  
+         
+   
+server:
+  port: 8090    
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+#creamos las rutas para enlzar los microservicios
+#service-id es el nombre del application.name del  microservicio

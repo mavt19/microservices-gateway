@@ -9,13 +9,20 @@ spring:
         
     gateway:
       routes:
+      - id: microservices-subjects
+        uri: lb://microservices-subjects
+        predicates:
+        - Path=/api/v1/subjects/**  
+        filters:
+        - StripPrefix=3  
+              
       - id: microservices-users
         uri: lb://microservices-users
         predicates:
-        - Path=/api/v1/**  
+        - Path=/api/v1/students/**  
         filters:
-        - StripPrefix=2  
-         
+        - StripPrefix=3  
+                 
    
 server:
   port: 8090    

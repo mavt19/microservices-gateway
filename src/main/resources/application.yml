@@ -29,7 +29,14 @@ spring:
         - Path=/api/v1/exams/**  
         filters:
         - StripPrefix=3  
-           
+
+      - id: microservices-answers
+        uri: lb://microservices-answers
+        predicates:
+        - Path=/api/v1/answers/**  
+        filters:
+        - StripPrefix=3  
+                   
 server:
   port: 8090    
   

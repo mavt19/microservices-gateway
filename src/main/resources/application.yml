@@ -23,7 +23,20 @@ spring:
         filters:
         - StripPrefix=3  
                  
-   
+      - id: microservices-exams
+        uri: lb://microservices-exams
+        predicates:
+        - Path=/api/v1/exams/**  
+        filters:
+        - StripPrefix=3  
+
+      - id: microservices-answers
+        uri: lb://microservices-answers
+        predicates:
+        - Path=/api/v1/answers/**  
+        filters:
+        - StripPrefix=3  
+                   
 server:
   port: 8090    
   
@@ -34,3 +47,10 @@ eureka:
 
 #creamos las rutas para enlzar los microservicios
 #service-id es el nombre del application.name del  microservicio
+
+#eureka:
+#  client:
+#    register-with-eureka: false
+#    fetch-registry: false  
+#    serviceUrl:
+#      defaultZone: https://mavt19-microservices-eureka-66wgwjv4cgjp-8761.githubpreview.dev/eureka/
